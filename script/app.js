@@ -8,17 +8,20 @@ class App{
         let condiArea = true
         if (tipo == "apartamento" || tipo == "casa") {
             condiAP = true
+
+            if (Number(area) > 0) {
+            
+                condiArea = true
+            } else {
+                alert("Informe uma área valida")
+                condiArea = false
+            }
         } else {
             alert("Selecione um tipo de imóvel")
             condiAP = false
+
         }
-        if (Number(area) > 0) {
-            
-            condiArea = true
-        } else {
-            alert("Informe uma área valida")
-            condiArea = false
-        }
+        
 
         if(condiAP && condiArea) {
             let imovel = new Imovel(tipo, area, status)   
