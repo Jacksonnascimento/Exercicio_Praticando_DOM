@@ -6,7 +6,7 @@ class App{
         let status = document.querySelector("input[name ='status']").checked
         let imovel = new Imovel(tipo, area, status)   
         this.listaDeImoveis(imovel)
-        
+        this.limpar()
         
     }
 
@@ -18,6 +18,7 @@ class App{
            elemento.appendChild(opcaoStatus)
         }
         elemento.innerHTML += texto
+        elemento.appendChild(this.criarBotao())
         document.getElementById("list-imoveis").appendChild(elemento)
     }
 
@@ -28,4 +29,24 @@ class App{
         elemento.style.color = "white"
         return elemento
     }
+
+    criarBotao(){
+        let botao = document.createElement("button")
+        botao.type = "button"
+        botao.innerText =" Remover"
+        botao.setAttribute("onclick", "app.removerPropriedade(this)")
+        return botao
+    }
+
+    removerPropriedade(propriedade){
+        let remover = propriedade.parentNode
+        document.getElementById("list-imoveis").removeChild(remover) 
+    }
+
+    limpar(){
+        document.querySelector("select[name='tipo']").value = ""
+        document.querySelector("input[name='area']").value = ""
+        document.querySelector("input[name ='status']").checked = false
+    }
+
 }
