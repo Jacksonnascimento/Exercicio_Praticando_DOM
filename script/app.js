@@ -4,9 +4,28 @@ class App{
         let tipo = document.querySelector("select[name='tipo']").value 
         let area = document.querySelector("input[name='area']").value
         let status = document.querySelector("input[name ='status']").checked
-        let imovel = new Imovel(tipo, area, status)   
-        this.listaDeImoveis(imovel)
-        this.limpar()
+        let condiAP = true
+        let condiArea = true
+        if (tipo == "apartamento" || tipo == "casa") {
+            condiAP = true
+        } else {
+            alert("Selecione um tipo de imóvel")
+            condiAP = false
+        }
+        if (Number(area) > 0) {
+            
+            condiArea = true
+        } else {
+            alert("Informe uma área valida")
+            condiArea = false
+        }
+
+        if(condiAP && condiArea) {
+            let imovel = new Imovel(tipo, area, status)   
+            this.listaDeImoveis(imovel)
+            this.limpar()
+        }
+        
         
     }
 
